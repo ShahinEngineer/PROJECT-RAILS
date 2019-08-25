@@ -5,6 +5,7 @@ Created on Sat Aug 24 20:01:19 2019
 @author: Mohammad Shahin
 """
 
+import random
 board = [
     [7,8,0,4,0,0,1,2,0],
     [6,0,0,0,7,5,0,0,9],
@@ -16,7 +17,27 @@ board = [
     [1,2,0,0,0,7,4,0,0],
     [0,4,9,2,0,6,0,0,7]
 ]
+test_board=[[]]
+fix_dic={}
 
+def initialization():
+    test_board=[[0 for i in range(9)] for j in range(9)]
+        
+    for i in range(30):
+         x=random.randint(0,8)
+         y=random.randint(0,8)
+         value=random.randint(1,9)
+         if valid(test_board,value,(x,y))==True and (x,y) not in fix_dic :
+             fix_dic[(x,y)]=value
+             test_board[x][y]=value
+           
+        
+
+            
+    return test_board
+            
+    
+    
 def slove(bord):
     find=find_empty(bord)
     print(find)
@@ -86,7 +107,9 @@ def find_empty(bord):
     
     return None
             
-            
+#sloved_sudoku=slove(board)         
+#print(sloved_sudoku)
+print(initialization())
 print_board(board)
 slove(board)
 print("___________________")
