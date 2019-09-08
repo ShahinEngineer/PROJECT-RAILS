@@ -1,0 +1,73 @@
+1-
+select * from emp WHERE deptno=20 and job!="MANAGER"
+2-
+select ename,sal from emp where ename='blake'or ename='jones'or ename='scott'or ename='smith' ORDER by sal 
+3-
+select DISTINCT job from emp where sal BETWEEN 1000 and 2500
+//function
+4-
+select ename from emp where ename like"S%" or ename like 'J%'
+5-
+select * from emp WHERE job like  '%ANA%' order by hiredate
+6-
+select * from emp LIMIT 5
+7-
+select ename,sal,sal- coalesce(comm,0) as 'net salary' from emp
+8-
+SELECT
+    deptno, sum(sal)
+FROM
+    emp
+GROUP BY deptno;
+9-
+SELECT DISTINCT job ,round(sum(sal),2) from emp GROUP by job
+10-
+
+SELECT ename,empno,job,deptno,count(deptno) as x from emp GROUP by deptno,job order by deptno,x;
+
+or
+SELECT T1.ename ,T1.deptno, T1.job , count(T1.job)as number from(SELECT ename , job,deptno ,count(deptno) 
+FROM emp GROUP BY deptno,job)as T1 GROUP by job ORDER BY deptno,number
+
+11-
+
+select deptno ,group_concat(ename,'-') as name from emp where deptno=10
+
+12-
+ select  empno,ename,job,mgr,sal,comm,hiredate,d.deptno from emp as d,(
+ select deptno,min(hiredate) as newdate ,max(hiredate)as olddate  from emp GROUP by deptno)as a 
+ where (a.deptno=d.deptno and (d.hiredate=a.newdate or d.hiredate=a.olddate)) ORDER By d.deptno
+ 
+13-
+select t1.ename,t1.sal,t2.NextName,t2.sal as "next_salary"  from emp as t1 JOIN(select ename as NextName,sal from emp order by sal ) as t2 where t2.sal >t1.sal GROUP by t1.sal
+
+14-
+select ename,loc from emp JOIN dept where emp.deptno =dept.deptno ORDER by loc
+
+15-
+select t1.ename,t2.ename as Manager from emp as t1  left join emp as t2 on t1.mgr=t2.empno
+16-
+
+select deptno ,dname from dept where deptno not in(select DISTINCT deptno from emp )
+
+17-
+
+select ename,sal from emp where sal > (select sal from emp where ename="Clark")
+
+18-
+CREATE TABLE "students" (
+	"student_id"	INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+	"name"	varchar(255),
+	"subject"	varchar(255),
+	"grade"	INTEGER
+);
+19-
+INSERT into students(name,subject,grade) VALUES ("mohammad","title",95)
+
+20-
+DELETE from students WHERE name="mohammad"
+
+21-
+
+
+
