@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block page_content %}
+<html>
+    <head>
+        <title>form</title>
+    </head>
+    <body>
+        <h1>welcome</h1>
+        <button type="button" class="btn btn-primary">Primary</button>
+         welcome ! you can login here
+         <h2>Home</h2>
+         <form  method="post">
+             {% csrf_token %}
+             {{ form }}
+             <br>
+             <button type="submit">Submit</button>
+         </form>
+
+         <form method="get" >
+            Search Notecards:<input type="text" name="q" id="id_q" value="{{ query }}"/>
+            <input type="submit" value="Search" />
+          </form>
+
+<p>{{result.text}}</p>
+<p>{{result.title}}</p>
+ 
+    </body>
+  
+</html>
+
+{% endblock %}
+
